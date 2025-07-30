@@ -80,11 +80,11 @@
 
     <!-- Content -->
     <div class="text-center px-4 py-6">
-        <h2 class="text-3xl font-bold">
+        <h2 class="header text-3xl font-bold">
             Happy
             <span class="inline-block text-white bg-[#004aad] px-2 py-1 clip-tummy ml-2">Tummy</span>
         </h2>
-        <h2 class="text-3xl font-bold mt-2">
+        <h2 class="header text-3xl font-bold mt-2">
             Happy
             <span class="inline-block text-white bg-[#ff6b00] px-2 py-1 clip-tummy ml-2">Study</span>
         </h2>
