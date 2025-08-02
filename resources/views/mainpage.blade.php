@@ -1,117 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Coolvetica via CDN alternatif (karena tidak tersedia di Google Fonts) -->
-    <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet"> --}}
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .clip-diagonal {
-            clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
-        }
-
-        .clip-diagonals {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 75%);
-        }
-
-        .clip-tummy {
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            src: url('/fonts/Poppins-Regular.ttf') format('truetype');
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: 'Coolvetica';
-            src: url('/fonts/coolvetica-rg.ttf') format('truetype');
-            font-weight: normal;
-        }
-
-        .poppins {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .coolvetica {
-            font-family: 'Coolvetica', sans-serif;
-        }
-    </style>
-
-</head>
-
-<body class="bg-[#fff9f2] font-sans">
-
-    <!-- Navbar -->
-    <div class="bg-[#164483] text-white px-4 py-4">
-        <div class="flex justify-between items-center">
-            <div class="text-white text-sm flex flex-row w-12 h-12 items-center">
-                <img src="{{ asset('images/Logo1.png') }}" alt="Logo">
-                <span class="coolvetica">ORCA<br>Eats</span>
-            </div>
-            <div class="space-y-1 cursor-pointer">
-                <i class="fa-solid fa-bars fa-2xl"></i>
-            </div>
-        </div>
-    </div>
+<x-template>
 
     <!-- Checker Header -->
-    <div class="">
-        <div class="grid grid-cols-20 grid-rows-2 w-full">
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#164483]"></div>
-            <div class="w-full aspect-square bg-white"></div>
-        </div>
-    </div>
 
     <!-- Content -->
-    <div class="text-center px-4 py-6">
+    <div class="text-center px-4 py-6 mt-[55px]">
 
         <img src="{{ asset('images/MainTitle.png') }}" alt="Happy Tummy Happy Study">
 
@@ -126,9 +18,9 @@
             <button
                 class="bg-[#E72828] border-2 border-transparent active:border-[#E72828] active:bg-transparent active:text-[#E72828] text-white px-5 py-2 rounded-full font-semibold poppins">Liat
                 Menu</button>
-            <button
+            <a href="/preorder"
                 class="bg-[#164483] border-2 border-transparent active:border-[#164483] active:bg-transparent active:text-[#164483] text-white px-5 py-2 rounded-full font-semibold poppins">Pre
-                Order</button>
+                Order</a>
         </div>
     </div>
 
@@ -380,11 +272,8 @@
         <div class="">
             <h1 class="text-left text-[#164483] font-bold text-2xl coolvetica">Ice Cream<br>Scoops</h1>
             <p class="text-left text-lg font-bold text-[#E72828] coolvetica">7K</p>
-            <p class="text-left text-xs text-[#164483] poppins">Ice cream yang dingin, lembut, dan<br>manis di tambah dengan topping<br>yang melimpah. cocok banget<br>sambil nonton agustusan</p>
+            <p class="text-left text-xs text-[#164483] poppins">Ice cream yang dingin, lembut, dan<br>manis di tambah
+                dengan topping<br>yang melimpah. cocok banget<br>sambil nonton agustusan</p>
         </div>
     </div>
-
-
-</body>
-
-</html>
+</x-template>
