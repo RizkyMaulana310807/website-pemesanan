@@ -64,7 +64,7 @@
     <div class="flex items-center text-center justify-center my-12">
 
         <a href="/pembayaran"
-            class="w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full flex items-center justify-centers">
+            class="flex w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full flex items-center justify-center">
             Selanjutnya
         </a>
 

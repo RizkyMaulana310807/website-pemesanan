@@ -1,11 +1,10 @@
 <x-template>
     <div x-data="{ metode: '' }">
-        <!-- Judul -->
+
         <div class="my-8 flex items-center justify-center">
             <img src="{{ asset('images/pembayarantext.png') }}" alt="pembayaran" class="w-[219px]">
         </div>
 
-        <!-- Nominal -->
         <div class="flex items-center justify-center flex-col gap-4 my-8">
             <h1 class="popppins text-[20px] font-semibold text-[#164483]">Kamu harus membayar</h1>
             <h1
@@ -13,7 +12,6 @@
                 Rp5.000</h1>
         </div>
 
-        <!-- Pilihan Metode -->
         <div class="flex items-center gap-4 justify-center">
             <button @click="metode = 'cash'"
                 :class="metode === 'cash' ? 'bg-[#E72828] text-white' : 'text-[#E72828]'"
@@ -27,7 +25,6 @@
             </button>
         </div>
 
-        <!-- Notes -->
         <div class="my-8 w-[322px] flex mx-auto">
             <p class="text-center text-[#164483]">
                 <span class="text-[#E72828] poppins text-[14px]">Notes:</span><br>
@@ -35,7 +32,6 @@
             </p>
         </div>
 
-        <!-- QR Section -->
         <div x-show="metode === 'qris'" x-transition class="flex items-center justify-center flex-col gap-4">
             <img src="{{ asset('images/qris.png') }}" alt="qris" class="w-[244px]">
             <a href="#"
@@ -44,9 +40,8 @@
             </a>
         </div>
 
-        <!-- Tombol Selanjutnya -->
         <div class="flex items-center text-center justify-center my-12">
-            <a href="/pembayaran"
+            <a href="/checkout "
                 class="w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full flex items-center justify-center">
                 Selanjutnya
             </a>
