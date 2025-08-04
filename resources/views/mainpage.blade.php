@@ -167,7 +167,7 @@
         </div>
         <div class="flex px-4 pt-2 items-center justify-start">
             <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
-            <div x-data="countdownTimer('2025-08-10T00:00:00')" x-init="startCountdown()" class="text-xs w-full text-[#164483]">
+            <div x-data="countdownTimer('2025-08-10T00:00:00')" x-init="startCountdown()" class="text-xs w-full text-[#164483] poppins">
                 Unlocked at<br>
                 <span>10 Agustus 2025</span><br>
                 <i class="fa-solid fa-stopwatch"></i>
@@ -259,7 +259,7 @@
         <div class="flex items-center justify-center px-4 pt-2 mt-8 mx-auto w-fit">
             <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
             <p 
-            class="text-xs text-[#164483] text-center" 
+            class="text-xs text-[#164483] text-center poppins" 
             x-data="countdownTimer('2025-08-17T00:00:00')" 
             x-init="startCountdown()"
         >
