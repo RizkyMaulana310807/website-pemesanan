@@ -167,8 +167,12 @@
         </div>
         <div class="flex px-4 pt-2 items-center justify-start">
             <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
-            <p class="text-xs w-full text-[#164483]">unlocked at<br><span>10 Agustus 2025</span><br><i
-                    class="fa-solid fa-stopwatch"></i>263 : 59 : 59</p>
+            <div x-data="countdownTimer('2025-08-10T00:00:00')" x-init="startCountdown()" class="text-xs w-full text-[#164483]">
+                Unlocked at<br>
+                <span>10 Agustus 2025</span><br>
+                <i class="fa-solid fa-stopwatch"></i>
+                <span x-text="timeLeft"></span>
+            </div>
         </div>
     </div>
 
@@ -254,12 +258,17 @@
         </div>
         <div class="flex items-center justify-center px-4 pt-2 mt-8 mx-auto w-fit">
             <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
-            <p class="text-xs text-[#164483] text-center">
-                unlocked at<br>
-                <span>10 Agustus 2025</span><br>
-                <i class="fa-solid fa-stopwatch"></i> 263 : 59 : 59
-            </p>
-        </div>
+            <p 
+            class="text-xs text-[#164483] text-center" 
+            x-data="countdownTimer('2025-08-17T00:00:00')" 
+            x-init="startCountdown()"
+        >
+            unlocked at<br>
+            <span>17 Agustus 2025</span><br>
+            <i class="fa-solid fa-stopwatch"></i> 
+            <span x-text="timeLeft"></span>
+        </p>
+                </div>
         <div class="flex mx-auto w-fit">
             <img src="{{ asset('images/SpesialHUTRIText.png') }}" alt="Spesial HUT RI" class="w-56">
         </div>
@@ -276,4 +285,35 @@
                 dengan topping<br>yang melimpah. cocok banget<br>sambil nonton agustusan</p>
         </div>
     </div>
+    <script>
+        function countdownTimer(targetDateStr) {
+            return {
+                timeLeft: '',
+                targetTime: new Date(targetDateStr).getTime(),
+                startCountdown() {
+                    this.updateTime()
+                    setInterval(() => this.updateTime(), 1000);
+                },
+                updateTime() {
+                    const now = new Date().getTime();
+                    const distance = this.targetTime - now;
+
+                    if (distance < 0) {
+                        this.timeLeft = "00 : 00 : 00";
+                        return;
+                    }
+
+                    const hours = String(Math.floor((distance / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+                    const minutes = String(Math.floor((distance / (1000 * 60)) % 60)).padStart(2, '0');
+                    const seconds = String(Math.floor((distance / 1000) % 60)).padStart(2, '0');
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const totalHours = days * 24 + parseInt(hours);
+
+                    this.timeLeft = `${totalHours} : ${minutes} : ${seconds}`;
+                }
+            }
+        }
+    </script>
+
 </x-template>
