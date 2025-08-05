@@ -1,98 +1,101 @@
 <x-template>
+    {{-- Inisialisasi Alpine.js untuk mengelola state form --}}
+    <div x-data="{
+        customer_name: '{{ old('customer_name') }}',
+        customer_phone: '{{ old('customer_phone') }}',
+        pickup_time_slot: '{{ old('pickup_time_slot') }}',
+        products: {{ json_encode($availableProducts->map(function($p) {
+            return ['id' => $p->id, 'name' => $p->name, 'price' => $p->price, 'image' => $p->image, 'quantity' => 0];
+        })) }},
 
-    <div class="flex w-full px-4 mt-8 mx-auto justify-center">
-        <div class="w-fit">
-            <img src="{{ asset('images/preordertext.png') }}" alt="Pre Order Text" class="w-56">
-            <p class="text-[#E72828] poppins text-[15px] mt-1 text-start">3–5 Agustus</p>
+        // Fungsi untuk menghitung total harga
+        get grandTotal() {
+            return this.products.reduce((total, product) => {
+                return total + (product.quantity * product.price);
+            }, 0);
+        },
+
+        // Fungsi untuk validasi form
+        get isFormInvalid() {
+            return !this.customer_name || !this.customer_phone || !this.pickup_time_slot || this.grandTotal <= 0;
+        }
+    }">
+
+        <div class="flex w-full px-4 mt-8 mx-auto justify-center">
+            <div class="w-fit">
+                <img src="{{ asset('/images/preordertext.png') }}" alt="Pre Order Text" class="w-56">
+                <p class="text-[#E72828] poppins text-[15px] mt-1 text-start">3–5 Agustus</p>
+            </div>
         </div>
 
+        <form action="{{ route('preorder.process') }}" method="POST">
+            @csrf
+            <div class="mt-12">
+                <p class="poppins text-[16px] text-[#164483] text-center">Pesenan kamu PO nih, masukin<br>infonya dulu biar nggak ketuker<br>pas diambil</p>
+            </div>
 
+            @if ($errors->any())
+                <div class="w-[354px] mx-auto my-4 p-3 bg-red-100 text-red-700 border border-red-400 rounded-lg">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="flex items-center justify-center flex-col gap-6 mt-12">
+                <input type="text" name="customer_name" x-model="customer_name"
+                    class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50"
+                    placeholder="Nama" required>
+                <input type="text" name="customer_phone" x-model="customer_phone"
+                    class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50"
+                    placeholder="No. HP" required>
+            </div>
+
+            <div class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
+                <h1 class="text-[25px] coolvetica text-[#164483] text-center m-4">Menu yang dipesan</h1>
+                <div class="flex flex-col w-full">
+                    {{-- Loop menu menggunakan template Alpine.js --}}
+                    <template x-for="(product, index) in products" :key="product.id">
+                        <div class="flex justify-between items-center p-4 border-b">
+                            <img :src="'{{ asset('') }}' + product.image" :alt="product.name" class="w-20 h-20 rounded-md object-cover">
+                            <div class="flex-grow mx-4">
+                                <h3 class="font-bold text-[#164483]" x-text="product.name"></h3>
+                                <p class="text-sm text-[#E72828]" x-text="new Intl.NumberFormat('id-ID').format(product.price) + 'K'"></p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="hidden" :name="'products[' + index + '][id]'" :value="product.id">
+                                <input type="number" :name="'products[' + index + '][quantity]'" x-model.number="product.quantity"
+                                       class="w-16 text-center border rounded" min="0">
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                 {{-- Menampilkan Total Harga Real-time --}}
+                <div class="w-full p-4 text-right">
+                    <span class="text-[#164483] font-bold">Total:</span>
+                    <span class="font-bold text-lg text-[#E72828]" x-text="'Rp' + new Intl.NumberFormat('id-ID').format(grandTotal)"></span>
+                </div>
+            </div>
+
+            <div class="relative w-[354px] h-[50px] mx-auto mt-6">
+                <select name="pickup_time_slot" x-model="pickup_time_slot" required
+                    class="w-full h-full poppins border-2 border-[#E72828] rounded-full px-4 appearance-none text-gray-500 bg-white">
+                    <option value="" disabled>Pilih Waktu Pengambilan</option>
+                    <option value="10.00 - 11.00">10.00 - 11.00</option>
+                    <option value="11.00 - 12.00">11.00 - 12.00</option>
+                    <option value="12.00 - 13.00">12.00 - 13.00</option>
+                </select>
+            </div>
+
+            <div class="flex items-center text-center justify-center my-12">
+                <button type="submit" :disabled="isFormInvalid"
+                    :class="{ 'opacity-50 cursor-not-allowed': isFormInvalid }"
+                    class="flex w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full items-center justify-center transition">
+                    Selanjutnya
+                </button>
+            </div>
+        </form>
     </div>
-    <div class="mt-12">
-        <p class="poppins text-[16px] text-[#164483] text-center">Pesenan kamu PO nih, masukin<br>infonya dulu biar nggak
-            ketuker<br>pas
-            diambil</p>
-    </div>
-
-    <div class="flex items-center justify-center flex-col gap-6 mt-12">
-        <input type="text" id="nameInput"
-            class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50 transition-all duration-200"
-            placeholder="Nama">
-
-        <input type="text" id="phoneInput"
-            class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50 transition-all duration-200"
-            placeholder="No. HP">
-    </div>
-
-    <div
-        class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
-
-        <h1 class="text-[25px] coolvetica text-[#164483] text-center m-4">Menu yang dipesan</h1>
-        <div class="flex flex-col w-full">
-
-            <x-cardwithcounter img="images/japanesse-coffe-jelly.png" alt="Japanese Coffee Jelly"
-                title="Japanese Coffee Jelly" price="5K" />
-
-            <x-cardwithcounter img="images/applefritter.png" alt="Apple Fritter" title="Apple Fritter" price="7K" />
-        </div>
-
-    </div>
-
-    <div x-data="{ open: false, selected: '' }" class="relative w-[354px] h-[50px] mx-auto mt-6">
-        <!-- Trigger -->
-        <div @click="open = !open"
-            class="border-2 border-[#E72828] rounded-full px-4 py-2 flex items-center justify-between cursor-pointer text-[#7D8CA4] text-sm bg-white">
-            <span class="poppins" x-text="selected || 'waktu pengambilan'"></span>
-            <svg class="w-4 h-4 text-[#164483]" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-
-        <!-- Dropdown List -->
-        <ul x-show="open" @click.away="open = false"
-            class="absolute z-10 mt-1 bg-white border border-[#E72828] rounded-md w-full shadow transition" x-cloak>
-            <li @click="selected = '10.00 - 11.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">10.00 - 11.00</li>
-            <li @click="selected = '11.00 - 12.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">11.00 - 12.00</li>
-            <li @click="selected = '12.00 - 13.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">12.00 - 13.00</li>
-        </ul>
-
-    </div>
-    <div class="flex items-center text-center justify-center my-12">
-
-        <a href="/pembayaran"
-            class="flex w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full flex items-center justify-center">
-            Selanjutnya
-        </a>
-
-    </div>
-    </div>
-
-    <script>
-        const inputs = document.querySelectorAll('.inputform');
-
-        inputs.forEach(input => {
-            const updateBorder = () => {
-                if (input === document.activeElement || input.value.trim() !== '') {
-                    input.classList.remove('border-[#E72828]/50');
-                    input.classList.add('border-[#E72828]');
-                } else {
-                    input.classList.remove('border-[#E72828]');
-                    input.classList.add('border-[#E72828]/50');
-                }
-            };
-
-            // Initial check (in case already filled)
-            updateBorder();
-
-            // On focus, blur, and input events
-            input.addEventListener('focus', updateBorder);
-            input.addEventListener('blur', updateBorder);
-            input.addEventListener('input', updateBorder);
-        });
-    </script>
-
 </x-template>
