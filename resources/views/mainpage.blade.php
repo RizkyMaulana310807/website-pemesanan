@@ -113,7 +113,8 @@
     </div>
 
     <div class="p-4 py-8 my-8">
-        <h1 class="font-bold text-[#164483] text-center text-xl coolvetica" style="letter-spacing: 1px;">Masih ada nih di bawah</h1>
+        <h1 class="font-bold text-[#164483] text-center text-xl coolvetica" style="letter-spacing: 1px;">Masih ada nih
+            di bawah</h1>
     </div>
 
 
@@ -197,18 +198,19 @@
         <div class="w-1/2 flex items-end justify-center">
             <img src="{{ asset('images/kpssrgl.png') }}" class="w-28 h-auto" alt="Brownis Bite">
         </div>
-    
+
         <!-- Bagian Kanan -->
         <div class="w-1/2 flex flex-col justify-center gap-2 px-4">
             <h1 class="text-[#164483] font-bold text-2xl coolvetica leading-snug">Kopi<br>Susu Regal</h1>
             <p class="text-lg font-bold text-[#E72828] coolvetica">7K</p>
-            <p class="text-xs text-[#164483] poppins">Kopi susu creamy yang dipadu dengan biskuit regal yang lembut dan crunchy. Cocok pas lagi cuaca panas.</p>
+            <p class="text-xs text-[#164483] poppins">Kopi susu creamy yang dipadu dengan biskuit regal yang lembut dan
+                crunchy. Cocok pas lagi cuaca panas.</p>
         </div>
     </div>
-    
+
     <div class="p-4 py-8 my-8">
-        <h1 class="coolvetica text-[#164483] text-[27px] text-center coolvetica" style="letter-spacing: 1px;">Di bawah ada menu spesial <br><span
-                class="bg-red-500 text-white px-2">HUT RI</span> nih !</h1>
+        <h1 class="coolvetica text-[#164483] text-[27px] text-center coolvetica" style="letter-spacing: 1px;">Di bawah
+            ada menu spesial <br><span class="bg-red-500 text-white px-2">HUT RI</span> nih !</h1>
     </div>
 
     <div class="">
@@ -274,19 +276,41 @@
         </div>
     </div>
 
-    <div class="flex flex-row justify-around mt-12">
-        <div class="w-28 h-42 flex items-end">
-            <img src="{{ asset('images/icecream.png') }}" class="flex shadow-lg w-38 h-3w-38" alt="Brownis Bite">
-        </div>
-        <div class="">
-            <h1 class="text-left text-[#164483] font-bold text-2xl coolvetica" style="letter-spacing: 1px;">Ice
-                Cream<br>Scoops</h1>
-            <p class="text-left text-lg font-bold text-[#E72828] coolvetica">7K</p>
-            <p class="text-left text-xs text-[#164483] poppins">Ice cream yang dingin, lembut, dan<br>manis di tambah
-                dengan topping<br>yang melimpah. cocok banget<br>sambil nonton agustusan</p>
+    <div class="bg-[#FFF5ED] px-6 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    
+            <!-- Ice Cream -->
+            <div class="flex items-center gap-6">
+                <img src="{{ asset('images/icecream.png') }}" alt="Ice Cream Scoops" class="w-28 h-28 object-contain shadow-lg">
+                <div class="text-left">
+                    <h1 class="text-[#164483] font-bold text-xl leading-tight coolvetica">Ice Cream<br>Scoops</h1>
+                    <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica">7K</p>
+                    <p class="text-xs text-[#164483] mt-1 poppins">
+                        Ice Cream yang dingin, lembut, an<br>
+                        manis di tambah dengan topping<br>
+                        yang melimpah, cocok banget<br>
+                        sambil nonton agustusan
+                    </p>
+                </div>
+            </div>
+    
+            <!-- Brownies -->
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <h1 class="text-[#164483] font-bold text-xl leading-tight coolvetica">Brownies<br>Bites</h1>
+                    <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica">10K</p>
+                    <p class="text-xs text-[#164483] mt-1 poppins">
+                        1 box Brownies lembut, pakai<br>
+                        cokelat premium, manisnya pas,<br>
+                        lumer dalam sekali gigitan
+                    </p>
+                </div>
+                <img src="{{ asset('images/brownies.png') }}" alt="Brownies Bites" class="w-28 h-28 object-contain shadow-lg">
+            </div>
+    
         </div>
     </div>
-    <script>
+g        <script>
         function countdownTimer(targetDateStr) {
             return {
                 timeLeft: '',
@@ -318,4 +342,3 @@
     </script>
 
 </x-template>
-

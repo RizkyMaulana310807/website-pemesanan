@@ -12,7 +12,7 @@
     <div class="">
         <div class="grid grid-cols-20 grid-rows-2 w-full">
             <div class="w-full aspect-square bg-white"></div>
-            <div class="w-full aspect-square bg-[#979797]"></div>
+            <div class="w-full aspect-square bg-[#164483]"></div>
             <div class="w-full aspect-square bg-white"></div>
             <div class="w-full aspect-square bg-[#164483]"></div>
             <div class="w-full aspect-square bg-white"></div>

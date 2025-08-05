@@ -26,3 +26,7 @@ Route::get('/debug-images', function () {
     $products = \App\Models\Product::all();
     return view('debug-images', ['products' => $products]);
 });
+
+Route::get('/sorry', function(){
+    return view('sorrypage');
+});

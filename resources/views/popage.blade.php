@@ -3,21 +3,23 @@
     <div x-data="{
         customer_name: '{{ old('customer_name') }}',
         customer_phone: '{{ old('customer_phone') }}',
-        pickup_time_slot: '{{ old('pickup_time_slot') }}',
-        products: {{ json_encode($availableProducts->map(function($p) {
-            return ['id' => $p->id, 'name' => $p->name, 'price' => $p->price, 'image' => $p->image, 'quantity' => 0];
-        })) }},
-
+        {{-- pickup_time_slot: '{{ old('pickup_time_slot') }}', --}}
+        products: {{ json_encode(
+            $availableProducts->map(function ($p) {
+                return ['id' => $p->id, 'name' => $p->name, 'price' => $p->price, 'image' => $p->image, 'quantity' => 0];
+            }),
+        ) }},
+    
         // Fungsi untuk menghitung total harga
         get grandTotal() {
             return this.products.reduce((total, product) => {
                 return total + (product.quantity * product.price);
             }, 0);
         },
-
+    
         // Fungsi untuk validasi form
         get isFormInvalid() {
-            return !this.customer_name || !this.customer_phone || !this.pickup_time_slot || this.grandTotal <= 0;
+            return !this.customer_name || !this.customer_phone || this.grandTotal <= 0;
         }
     }">
 
@@ -31,7 +33,8 @@
         <form action="{{ route('preorder.process') }}" method="POST">
             @csrf
             <div class="mt-12">
-                <p class="poppins text-[16px] text-[#164483] text-center">Pesenan kamu PO nih, masukin<br>infonya dulu biar nggak ketuker<br>pas diambil</p>
+                <p class="poppins text-[16px] text-[#164483] text-center">Pesenan kamu PO nih, masukin<br>infonya dulu
+                    biar nggak ketuker<br>pas diambil</p>
             </div>
 
             @if ($errors->any())
@@ -45,53 +48,58 @@
             @endif
 
             <div class="flex items-center justify-center flex-col gap-6 mt-12">
-                <input type="text" name="customer_name" x-model="customer_name"
-                    class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50"
-                    placeholder="Nama" required>
-                <input type="text" name="customer_phone" x-model="customer_phone"
-                    class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50"
-                    placeholder="No. HP" required>
+                <input type="text" id="nameInput"
+                    class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+                    placeholder="Nama">
+
+                <input type="text" id="phoneInput"
+                    class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+                    placeholder="No. HP">
             </div>
 
-            <div class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
+            <div
+                class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
                 <h1 class="text-[25px] coolvetica text-[#164483] text-center m-4">Menu yang dipesan</h1>
                 <div class="flex flex-col w-full">
                     {{-- Loop menu menggunakan template Alpine.js --}}
                     <template x-for="(product, index) in products" :key="product.id">
-                        <div class="flex justify-between items-center p-4 border-b">
-                            <img :src="'{{ asset('') }}' + product.image" :alt="product.name" class="w-20 h-20 rounded-md object-cover">
+                        <div class="flex justify-between items-center p-4">
+                            <img :src="'{{ asset('') }}' + product.image" :alt="product.name"
+                                class="w-20 h-20 rounded-md object-cover">
                             <div class="flex-grow mx-4">
                                 <h3 class="font-bold text-[#164483]" x-text="product.name"></h3>
-                                <p class="text-sm text-[#E72828]" x-text="new Intl.NumberFormat('id-ID').format(product.price) + 'K'"></p>
+                                <p class="text-sm text-[#E72828]"
+                                    x-text="new Intl.NumberFormat('id-ID').format(product.price) + 'K'"></p>
                             </div>
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2" x-data="{ qty: product.quantity || 0 }" x-init="$watch('qty', val => product.quantity = val)" >
+                                <!-- Hidden ID -->
                                 <input type="hidden" :name="'products[' + index + '][id]'" :value="product.id">
-                                <input type="number" :name="'products[' + index + '][quantity]'" x-model.number="product.quantity"
-                                       class="w-16 text-center border rounded" min="0">
+
+                                <!-- Tombol - -->
+                                <button type="button" @click="qty > 0 ? qty-- : 1"
+                                    class="w-6 h-6 rounded bg-[#164483] text-white text-sm flex items-center justify-center">−</button>
+
+                                <!-- Input Jumlah -->
+                                <input type="number" :name="'products[' + index + '][quantity]'" x-model.number="qty"
+                                    class="w-6 text-center border rounded" min="0" >
+
+                                <!-- Tombol + -->
+                                <button type="button" @click="qty++"
+                                    class="w-6 h-6 rounded bg-[#164483] text-white text-sm flex items-center justify-center">+</button>
                             </div>
                         </div>
                     </template>
                 </div>
-                 {{-- Menampilkan Total Harga Real-time --}}
+                {{-- Menampilkan Total Harga Real-time --}}
                 <div class="w-full p-4 text-right">
                     <span class="text-[#164483] font-bold">Total:</span>
-                    <span class="font-bold text-lg text-[#E72828]" x-text="'Rp' + new Intl.NumberFormat('id-ID').format(grandTotal)"></span>
+                    <span class="font-bold text-lg text-[#E72828]"
+                        x-text="'Rp' + new Intl.NumberFormat('id-ID').format(grandTotal)"></span>
                 </div>
             </div>
 
-            <div class="relative w-[354px] h-[50px] mx-auto mt-6">
-                <select name="pickup_time_slot" x-model="pickup_time_slot" required
-                    class="w-full h-full poppins border-2 border-[#E72828] rounded-full px-4 appearance-none text-gray-500 bg-white">
-                    <option value="" disabled>Pilih Waktu Pengambilan</option>
-                    <option value="10.00 - 11.00">10.00 - 11.00</option>
-                    <option value="11.00 - 12.00">11.00 - 12.00</option>
-                    <option value="12.00 - 13.00">12.00 - 13.00</option>
-                </select>
-            </div>
-
             <div class="flex items-center text-center justify-center my-12">
-                <button type="submit" :disabled="isFormInvalid"
-                    :class="{ 'opacity-50 cursor-not-allowed': isFormInvalid }"
+                <button type="submit"
                     class="flex w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full items-center justify-center transition">
                     Selanjutnya
                 </button>
