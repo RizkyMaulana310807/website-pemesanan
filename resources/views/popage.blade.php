@@ -48,11 +48,11 @@
             @endif
 
             <div class="flex items-center justify-center flex-col gap-6 mt-12">
-                <input type="text" id="nameInput"
+                <input type="text" id="nameInput" name="customer_name"
                     class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
                     placeholder="Nama">
 
-                <input type="text" id="phoneInput"
+                <input type="text" id="phoneInput" name="customer_phone"
                     class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
                     placeholder="No. HP">
             </div>
@@ -71,7 +71,7 @@
                                 <p class="text-sm text-[#E72828]"
                                     x-text="new Intl.NumberFormat('id-ID').format(product.price) + 'K'"></p>
                             </div>
-                            <div class="flex items-center gap-2" x-data="{ qty: product.quantity || 0 }" x-init="$watch('qty', val => product.quantity = val)" >
+                            <div class="flex items-center gap-2" x-data="{ qty: product.quantity || 0 }" x-init="$watch('qty', val => product.quantity = val)">
                                 <!-- Hidden ID -->
                                 <input type="hidden" :name="'products[' + index + '][id]'" :value="product.id">
 
@@ -81,7 +81,7 @@
 
                                 <!-- Input Jumlah -->
                                 <input type="number" :name="'products[' + index + '][quantity]'" x-model.number="qty"
-                                    class="w-6 text-center border rounded" min="0" >
+                                    class="w-6 text-center border rounded" min="0">
 
                                 <!-- Tombol + -->
                                 <button type="button" @click="qty++"

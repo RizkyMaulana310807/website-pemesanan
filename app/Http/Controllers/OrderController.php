@@ -20,7 +20,7 @@ class OrderController extends Controller
         $request->validate([
             'customer_name' => 'required|string|max:255',
             'customer_phone' => 'required|string|max:15',
-            'pickup_time_slot' => 'required|string',
+            // 'pickup_time_slot' => 'required|string',
             'products' => 'required|array', // Pastikan 'products' ada
         ]);
 
@@ -58,7 +58,7 @@ class OrderController extends Controller
         Session::put('order_details', [
             'customer_name' => $request->customer_name,
             'customer_phone' => $request->customer_phone,
-            'pickup_time_slot' => $request->pickup_time_slot,
+            // 'pickup_time_slot' => $request->pickup_time_slot,
             'products' => $orderProductsData,
             'grand_total' => $grandTotal
         ]);
@@ -98,7 +98,6 @@ class OrderController extends Controller
                 'customer_name' => $orderDetails['customer_name'],
                 'customer_phone' => $orderDetails['customer_phone'],
                 'pickup_date' => now()->addDays(3)->toDateString(), // Contoh: Ambil 3 hari dari sekarang
-                'pickup_time_slot' => $orderDetails['pickup_time_slot'],
                 'grand_total' => $orderDetails['grand_total'],
                 'payment_method' => $request->payment_method,
                 'payment_status' => 'paid', // Asumsi langsung lunas

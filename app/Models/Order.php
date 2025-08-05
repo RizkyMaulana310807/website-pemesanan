@@ -19,7 +19,7 @@ class Order extends Model
         'customer_name',
         'customer_phone',
         'pickup_date',
-        'pickup_time_slot',
+        // 'pickup_time_slot',
         'grand_total',
         'payment_method',
         'payment_status',

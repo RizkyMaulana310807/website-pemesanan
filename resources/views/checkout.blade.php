@@ -40,11 +40,6 @@
                     {{-- PERUBAHAN: Menambahkan locale('id') untuk format Bahasa Indonesia --}}
                     <td>{{ \Carbon\Carbon::parse($order->pickup_date)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</td>
                 </tr>
-                 <tr>
-                    <td>Waktu Ambil</td>
-                    <td>:</td>
-                    <td>{{ $order->pickup_time_slot }}</td>
-                </tr>
                 <tr>
                     <td>Pembayaran</td>
                     <td>:</td>
