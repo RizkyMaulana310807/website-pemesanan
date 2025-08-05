@@ -16,7 +16,8 @@
             <button
                 class="bg-[#E72828] border-2 border-transparent active:border-[#E72828] active:bg-transparent active:text-[#E72828] text-white px-5 py-2 rounded-full font-semibold poppins">Liat
                 Menu</button>
-            <a href="/preorder"
+            {{-- Perbaikan: Menggunakan helper route() agar URL preorder mengarah ke /orca/preorder --}}
+            <a href="{{ route('preorder') }}"
                 class="bg-[#164483] border-2 border-transparent active:border-[#164483] active:bg-transparent active:text-[#164483] text-white px-5 py-2 rounded-full font-semibold poppins">Pre
                 Order</a>
         </div>
@@ -317,3 +318,4 @@
     </script>
 
 </x-template>
+

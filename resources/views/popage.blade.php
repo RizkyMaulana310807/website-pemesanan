@@ -1,9 +1,10 @@
 <x-template>
 
-    <div class="flex w-full px-4 mt-8 mx-auto justify-center">
-        <div class="w-fit">
-            <img src="{{ asset('images/preordertext.png') }}" alt="Pre Order Text" class="w-56">
-            <p class="text-[#E72828] poppins text-[15px] mt-1 text-start">3–5 Agustus</p>
+        <div class="flex w-full px-4 mt-8 mx-auto justify-center">
+            <div class="w-fit">
+                <img src="{{ asset('/images/preordertext.png') }}" alt="Pre Order Text" class="w-56">
+                <p class="text-[#E72828] poppins text-[15px] mt-1 text-start">3–5 Agustus</p>
+            </div>
         </div>
 
 
@@ -19,7 +20,7 @@
             class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
             placeholder="Nama">
 
-        <input type="text" id="phoneInput"
+        <input type="number" id="phoneInput"
             class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
             placeholder="No. HP">
     </div>
