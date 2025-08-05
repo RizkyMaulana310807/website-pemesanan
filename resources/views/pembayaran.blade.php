@@ -7,9 +7,10 @@
 
         <div class="flex items-center justify-center flex-col gap-4 my-8">
             <h1 class="popppins text-[20px] font-semibold text-[#164483]">Kamu harus membayar</h1>
-            <h1
-                class="poppins text-[22px] bg-[#E72828] rounded-lg px-6 py-2 w-[135px] h-[36px] font-semibold text-white flex items-center justify-center">
-                Rp5.000</h1>
+            <h1 style="letter-spacing: 1px;"
+                class="coolvetica text-[22px] bg-[#E72828] rounded-lg px-6 py-2 w-[135px] h-[36px] font-semibold text-white flex items-center justify-center">
+                Rp5.000
+            </h1>
         </div>
 
         <div class="flex items-center gap-4 justify-center">

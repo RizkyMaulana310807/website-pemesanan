@@ -16,13 +16,13 @@
 
     <div class="flex items-center justify-center flex-col gap-6 mt-12">
         <input type="text" id="nameInput"
-            class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50 transition-all duration-200"
-            placeholder="Nama">
-
-        <input type="text" id="phoneInput"
-            class="inputform poppins w-[354px] h-[50px] border-2 rounded-full p-4 border-[#E72828]/50 transition-all duration-200"
-            placeholder="No. HP">
-    </div>
+        class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+        placeholder="Nama">
+    
+    <input type="text" id="phoneInput"
+        class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+        placeholder="No. HP">
+        </div>
 
     <div
         class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
@@ -38,7 +38,7 @@
 
     </div>
 
-    <div x-data="{ open: false, selected: '' }" class="relative w-[354px] h-[50px] mx-auto mt-6">
+    <div x-data="{ open: false, selected: '' }" class="relative w-[320px] h-[70px] mx-auto mt-6">
         <!-- Trigger -->
         <div @click="open = !open"
             class="border-2 border-[#E72828] rounded-full px-4 py-2 flex items-center justify-between cursor-pointer text-[#7D8CA4] text-sm bg-white">
