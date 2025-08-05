@@ -73,7 +73,7 @@
     <!-- Bagian biru dengan clip-path miring bawah -->
     <div class="relative">
         <div class="bg-[#164483] text-white px-4 py-6 clip-diagonal">
-            <img class="w-48" src="{{ asset('images/MenuHeader.png') }}" alt="Our Menu">
+            <img class="w-40 ml-4" src="{{ asset('images/MenuHeader.png') }}" alt="Our Menu">
         </div>
 
         <!-- Week 1 di luar div biru -->
@@ -85,7 +85,7 @@
 
     <div class="flex flex-row">
         <div>
-            <img src="{{ asset('images/applefritter.png') }}" class="w-48 h-48 text-shadow-2xl"
+            <img src="{{ asset('images/applefritter.png') }}" class="w-36 h-36 text-shadow-2xl"
                 style="letter-spacing: 1px;" alt="apple fritters">
         </div>
         <div>
@@ -112,7 +112,7 @@
     </div>
 
     <div class="p-4 py-8 my-8">
-        <h1 class="font-bold text-[#164483] text-center text-xl coolvetica">Masih ada nih di bawah</h1>
+        <h1 class="font-bold text-[#164483] text-center text-xl coolvetica" style="letter-spacing: 1px;">Masih ada nih di bawah</h1>
     </div>
 
 
@@ -206,7 +206,7 @@
     </div>
     
     <div class="p-4 py-8 my-8">
-        <h1 class="coolvetica text-[#164483] text-[27px] text-center">Di bawah ada menu spesial <br><span
+        <h1 class="coolvetica text-[#164483] text-[27px] text-center coolvetica" style="letter-spacing: 1px;">Di bawah ada menu spesial <br><span
                 class="bg-red-500 text-white px-2">HUT RI</span> nih !</h1>
     </div>
 
