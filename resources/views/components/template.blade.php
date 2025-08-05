@@ -56,6 +56,10 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 
 </head>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\WaktuPo;
 
 class PageController extends Controller
 {
@@ -14,9 +15,20 @@ class PageController extends Controller
     public function index()
     {
         $products = Product::all();
-        // Menggunakan waktu saat ini (3 Agustus 2025) untuk mengecek menu yang terkunci
         $now = Carbon::now();
-        return view('mainpage', compact('products', 'now'));
+        $today = Carbon::today();
+
+        // PO sebelumnya (terakhir yang sudah lewat)
+        $previousPo = WaktuPo::whereDate('close_po', '<', $today)
+            ->orderBy('close_po', 'desc')
+            ->first();
+
+        // PO berikutnya (yang akan datang)
+        $nextPo = WaktuPo::whereDate('open_po', '>', $today)
+            ->orderBy('open_po', 'asc')
+            ->first();
+
+        return view('mainpage', compact('products', 'now', 'previousPo', 'nextPo'));
     }
 
     /**
@@ -24,10 +36,16 @@ class PageController extends Controller
      */
     public function preorder()
     {
+        $waktuPo = WaktuPo::latest()->first();
+
+        if (!$waktuPo || Carbon::today()->lt($waktuPo->open_po) || Carbon::today()->gt($waktuPo->close_po)) {
+            return redirect('/sorry');
+        }
+
         // Hanya ambil produk yang 'unlocked_at'-nya sudah lewat atau null
         $availableProducts = Product::where('unlocked_at', '<=', Carbon::now())
-                                    ->orWhereNull('unlocked_at')
-                                    ->get();
+            ->orWhereNull('unlocked_at')
+            ->get();
 
         return view('popage', compact('availableProducts'));
     }

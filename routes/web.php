@@ -4,16 +4,19 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\WaktuPo;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
- Route::get('/clear-optimize', function () {
-        Artisan::call('optimize:clear');
-        return 'Laravel optimized cache cleared!';
-    });
+
+Route::get('/clear-optimize', function () {
+    Artisan::call('optimize:clear');
+    return 'Laravel optimized cache cleared!';
+});
 // Rute untuk menampilkan halaman
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/preorder', [PageController::class, 'preorder'])->name('preorder'); //
@@ -28,6 +31,21 @@ Route::get('/debug-images', function () {
     return view('debug-images', ['products' => $products]);
 });
 
-Route::get('/sorry', function(){
-    return view('sorrypage');
+Route::get('/sorry', function () {
+    $today = Carbon::today();
+
+    // PO terakhir yang sudah tutup
+    $previousPo = WaktuPo::whereDate('close_po', '<', $today)
+        ->orderBy('close_po', 'desc')
+        ->first();
+
+    // PO berikutnya yang akan datang
+    $nextPo = WaktuPo::whereDate('open_po', '>', $today)
+        ->orderBy('open_po', 'asc')
+        ->first();
+
+    return view('sorrypage', [
+        'previousPo' => $previousPo,
+        'nextPo' => $nextPo,
+    ]);
 });

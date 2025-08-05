@@ -11,7 +11,8 @@
             {{-- Logo dan Judul --}}
             <div class="text-center mb-4">
                 <img src="{{ asset('images/Logo1.png') }}" alt="Logo" class="w-[74px] h-[74px] mx-auto">
-                <p class="text-[15px] coolvetica font-semibold">ORCA Eats</p>
+                <p class="text-[15px] coolvetica font-semibold text-[#164483]">ORCA Eats</p>
+                <p class="coolvetica text-[#164483] w-[219px]">Kamu bisa mengambil pesanan kamu di hari {{ \Carbon\Carbon::parse($order->pickup_date)->locale('id')->isoFormat('dddd') }}</p>
             </div>
 
             {{-- Garis putus-putus --}}
