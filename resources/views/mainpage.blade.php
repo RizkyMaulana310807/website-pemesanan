@@ -86,8 +86,8 @@
 
     <div class="flex flex-row">
         <div>
-            <img src="{{ asset('images/applefritter.png') }}" class="w-36 h-36 text-shadow-2xl"
-                style="letter-spacing: 1px;" alt="apple fritters">
+            <img src="{{ asset('images/applefritter.png') }}" class="w-36 h-36" style="letter-spacing: 1px;"
+                alt="apple fritters">
         </div>
         <div>
             <h1 class="text-[#164483] font-bold text-2xl coolvetica" data-speed="0.8">Apple<br>Fritters</h1>
@@ -107,8 +107,7 @@
                 krim<br>manis yang creamy</p>
         </div>
         <div class="w-36 h-36 flex items-end">
-            <img src="{{ asset('images/cff-jelly1.png') }}" class="flex text-shadow-2xl w-36 h-36"
-                alt="Japanesse coffe jelly">
+            <img src="{{ asset('images/cff-jelly1.png') }}" class="flex w-36 h-36" alt="Japanesse coffe jelly">
         </div>
     </div>
 
@@ -167,7 +166,7 @@
     <div class="relative">
         <div class="bg-[#E72828] text-white px-8 py-12 clip-diagonals">
         </div>
-        <div class="flex px-4 pt-2 items-center justify-start">
+        <div class="flex px-4 pt-2 items-center justify-start gap-2">
             <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
             <div x-data="countdownTimer('2025-08-10T00:00:00')" x-init="startCountdown()" class="text-xs w-full text-[#164483] poppins">
                 Unlocked at<br>
@@ -187,8 +186,7 @@
                 yang<br>melimpah</p>
         </div>
         <div class="w-36 h-36 flex items-end">
-            <img src="{{ asset('images/brownesbite.png') }}" class="flex text-shadow-2xl w-36 h-36"
-                alt="Brownis Bite">
+            <img src="{{ asset('images/brownesbite.png') }}" class="flex w-36 h-36" alt="Brownis Bite">
         </div>
     </div>
 
@@ -262,9 +260,9 @@
     <div class="relative">
         <div class="bg-[#164483] text-white px-8 py-12">
         </div>
-        <div class="flex items-center justify-center px-4 pt-2 mt-8 mx-auto w-fit">
-            <img src="{{ asset('images/Week2Text.png') }}" alt="Week 2" class="w-38">
-            <p class="text-xs text-[#164483] text-center poppins" x-data="countdownTimer('2025-08-17T00:00:00')" x-init="startCountdown()">
+        <div class="flex items-center justify-center px-4 pt-2 mt-8 mx-auto w-fit gap-2">
+            <img src="{{ asset('images/week3text.png') }}" alt="Week 3" class="w-38">
+            <p class="text-xs text-[#164483] text-left poppins" x-data="countdownTimer('2025-08-17T00:00:00')" x-init="startCountdown()">
                 unlocked at<br>
                 <span class="font-semibold">17 Agustus 2025</span><br>
                 <i class="fa-solid fa-stopwatch"></i>
@@ -278,10 +276,11 @@
 
     <div class="bg-[#FFF5ED] px-6 py-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-    
+
             <!-- Ice Cream -->
             <div class="flex items-center gap-6">
-                <img src="{{ asset('images/icecream.png') }}" alt="Ice Cream Scoops" class="w-28 h-28 object-contain shadow-lg">
+                <img src="{{ asset('images/icecream.png') }}" alt="Ice Cream Scoops"
+                    class="w-28 h-28 object-contain">
                 <div class="text-left">
                     <h1 class="text-[#164483] font-bold text-xl leading-tight coolvetica">Ice Cream<br>Scoops</h1>
                     <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica">7K</p>
@@ -293,7 +292,7 @@
                     </p>
                 </div>
             </div>
-    
+
             <!-- Brownies -->
             <div class="flex items-center gap-6">
                 <div class="text-right">
@@ -305,12 +304,14 @@
                         lumer dalam sekali gigitan
                     </p>
                 </div>
-                <img src="{{ asset('images/brownies.png') }}" alt="Brownies Bites" class="w-28 h-28 object-contain shadow-lg">
+                <img src="{{ asset('images/brownies.png') }}" alt="Brownies Bites"
+                    class="w-28 h-28 object-contain text-shadow-2xl">
             </div>
-    
+
         </div>
     </div>
-g        <script>
+    g
+    <script>
         function countdownTimer(targetDateStr) {
             return {
                 timeLeft: '',
