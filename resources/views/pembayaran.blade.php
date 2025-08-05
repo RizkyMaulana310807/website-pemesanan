@@ -1,7 +1,14 @@
 <x-template>
     {{-- Menggunakan Alpine.js untuk mengelola state metode pembayaran --}}
+    {{-- Menggunakan Alpine.js untuk mengelola state metode pembayaran --}}
     <div x-data="{ metode: '' }">
 
+        {{-- Form ini akan mengirim data ke OrderController@store --}}
+        <form action="{{ route('checkout.store') }}" method="POST">
+            @csrf
+            <div class="my-8 flex items-center justify-center">
+                <img src="{{ asset('images/pembayarantext.png') }}" alt="pembayaran" class="w-[219px]">
+            </div>
         {{-- Form ini akan mengirim data ke OrderController@store --}}
         <form action="{{ route('checkout.store') }}" method="POST">
             @csrf
@@ -34,7 +41,26 @@
                     Qris (Scan QR)
                 </button>
             </div>
+            <div class="flex items-center gap-4 justify-center">
+                {{-- Tombol diubah menjadi type="button" agar tidak langsung submit form --}}
+                <button type="button" @click="metode = 'cash'"
+                    :class="metode === 'cash' ? 'bg-[#E72828] text-white' : 'text-[#E72828]'"
+                    class="w-[136px] h-[40px] border-2 border-[#E72828] rounded-full coolvetica transition">
+                    Cash (Tunai)
+                </button>
+                <button type="button" @click="metode = 'qris'"
+                    :class="metode === 'qris' ? 'bg-[#164483] text-white' : 'text-[#164483]'"
+                    class="w-[136px] h-[40px] border-2 border-[#164483] rounded-full coolvetica transition">
+                    Qris (Scan QR)
+                </button>
+            </div>
 
+            <div class="my-8 w-[322px] flex mx-auto">
+                <p class="text-center text-[#164483]">
+                    <span class="text-[#E72828] poppins text-[14px]">Notes:</span><br>
+                    Bukti pembayarannya jangan sampai ilang! Buat ditunjukin pas ambil pesanan nanti
+                </p>
+            </div>
             <div class="my-8 w-[322px] flex mx-auto">
                 <p class="text-center text-[#164483]">
                     <span class="text-[#E72828] poppins text-[14px]">Notes:</span><br>
@@ -51,6 +77,15 @@
                 </a>
             </div>
 
+            <div class="flex items-center text-center justify-center my-12">
+                {{-- Tombol submit ini akan nonaktif jika belum ada metode yang dipilih --}}
+                <button type="submit" :disabled="!metode"
+                    :class="{'opacity-50 cursor-not-allowed': !metode}"
+                    class="w-[300px] h-[50px] coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white active:bg-transparent active:text-[#164483] rounded-full flex items-center justify-center transition">
+                    Selanjutnya
+                </button>
+            </div>
+        </form>
             <div class="flex items-center text-center justify-center my-12">
                 {{-- Tombol submit ini akan nonaktif jika belum ada metode yang dipilih --}}
                 <button type="submit" :disabled="!metode"
