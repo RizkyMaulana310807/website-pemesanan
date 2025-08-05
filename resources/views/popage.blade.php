@@ -16,13 +16,13 @@
 
     <div class="flex items-center justify-center flex-col gap-6 mt-12">
         <input type="text" id="nameInput"
-        class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
-        placeholder="Nama">
-    
-    <input type="text" id="phoneInput"
-        class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
-        placeholder="No. HP">
-        </div>
+            class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+            placeholder="Nama">
+
+        <input type="text" id="phoneInput"
+            class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
+            placeholder="No. HP">
+    </div>
 
     <div
         class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
@@ -51,13 +51,21 @@
 
         <!-- Dropdown List -->
         <ul x-show="open" @click.away="open = false"
-            class="absolute z-10 mt-1 bg-white border border-[#E72828] rounded-md w-full shadow transition" x-cloak>
-            <li @click="selected = '10.00 - 11.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">10.00 - 11.00</li>
-            <li @click="selected = '11.00 - 12.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">11.00 - 12.00</li>
-            <li @click="selected = '12.00 - 13.00'; open = false"
-                class="px-4 py-2 hover:bg-[#FFE9E9] text-sm cursor-pointer text-[#164483]">12.00 - 13.00</li>
+            class="absolute z-10 mt-2 w-full bg-[#FFF9F4] border border-[#E72828] rounded-b-xl px-6 py-4 shadow-md transition"
+            x-cloak>
+
+            <li @click="selected = 'Selasa, 5 agustus 2025'; open = false"
+                class="py-2 text-sm cursor-pointer text-[#164483] font-semibold">
+                Selasa, <span class="font-normal">5 agustus 2025</span>
+            </li>
+            <li @click="selected = 'Rabu, 6 agustus 2025'; open = false"
+                class="py-2 text-sm cursor-pointer text-[#164483] font-semibold">
+                Rabu, <span class="font-normal">6 agustus 2025</span>
+            </li>
+            <li @click="selected = 'Kamis, 7 agustus 2025'; open = false"
+                class="py-2 text-sm cursor-pointer text-[#164483] font-semibold">
+                Kamis, <span class="font-normal">7 agustus 2025</span>
+            </li>
         </ul>
 
     </div>
