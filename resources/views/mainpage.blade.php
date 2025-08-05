@@ -85,16 +85,18 @@
 
 
     <div class="flex flex-row">
-        <div>
-            <img src="{{ asset('images/applefritter.png') }}" class="w-36 h-36" style="letter-spacing: 1px;"
-                alt="apple fritters">
-        </div>
-        <div>
-            <h1 class="text-[#164483] font-bold text-2xl coolvetica" data-speed="0.8">Apple<br>Fritters</h1>
-            <p class="text-lg font-bold text-[#E72828] coolvetica">7K</p>
-            <p class="text-xs text-[#164483] poppins">Garing di luar, lembut di dalam<br>Apel manis di balut
-                adonan<br>goreng.
-                lalu di siram glaze manis<br>yang meleleh legit, wangi, dan bikin nagih</p>
+        <div class="flex items-center gap-6">
+            <img src="{{ asset('images/brownies.png') }}" alt="Brownies Bites"
+                class="w-28 h-28 object-contain text-shadow-2xl">
+            <div class="text-right">
+                <h1 class="text-[#164483] font-bold text-xl leading-tight coolvetica">Brownies<br>Bites</h1>
+                <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica">10K</p>
+                <p class="text-xs text-[#164483] mt-1 poppins">
+                    1 box Brownies lembut, pakai<br>
+                    cokelat premium, manisnya pas,<br>
+                    lumer dalam sekali gigitan
+                </p>
+            </div>
         </div>
     </div>
 
@@ -178,15 +180,18 @@
     </div>
 
     <div class="flex flex-row justify-around mt-8">
-        <div class="">
-            <h1 class="text-right text-[#164483] font-bold text-2xl coolvetica" style="letter-spacing: 1px;">
-                Cube<br>Bites</h1>
-            <p class="text-right text-lg font-bold text-[#E72828] coolvetica">8K</p>
-            <p class="text-right text-xs text-[#164483] poppins">Brownies manis potong<br>dengan topping
-                yang<br>melimpah</p>
-        </div>
-        <div class="w-36 h-36 flex items-end">
-            <img src="{{ asset('images/brownesbite.png') }}" class="flex w-36 h-36" alt="Brownis Bite">
+        <div class="flex items-center gap-6">
+            <div class="text-right">
+                <h1 class="text-[#164483] font-bold text-xl leading-tight coolvetica">Brownies<br>Bites</h1>
+                <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica">10K</p>
+                <p class="text-xs text-[#164483] mt-1 poppins">
+                    1 box Brownies lembut, pakai<br>
+                    cokelat premium, manisnya pas,<br>
+                    lumer dalam sekali gigitan
+                </p>
+            </div>
+            <img src="{{ asset('images/brownies.png') }}" alt="Brownies Bites"
+                class="w-28 h-28 object-contain text-shadow-2xl">
         </div>
     </div>
 
@@ -261,7 +266,7 @@
         <div class="bg-[#164483] text-white px-8 py-12">
         </div>
         <div class="flex items-center justify-center px-4 pt-2 mt-8 mx-auto w-fit gap-2">
-            <img src="{{ asset('images/week3text.png') }}" alt="Week 3" class="w-38">
+            <img src="{{ asset('images/Week3Text.png') }}" alt="Week 3" class="w-38">
             <p class="text-xs text-[#164483] text-left poppins" x-data="countdownTimer('2025-08-17T00:00:00')" x-init="startCountdown()">
                 unlocked at<br>
                 <span class="font-semibold">17 Agustus 2025</span><br>
