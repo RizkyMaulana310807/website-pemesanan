@@ -25,7 +25,7 @@
 
         <div class="flex w-full px-4 mt-8 mx-auto justify-center">
             <div class="w-fit">
-                <img src="{{ asset('/images/preordertext.png') }}" alt="Pre Order Text" class="w-56">
+                <img src="{{ asset('/images/preorder.png') }}" alt="Pre Order Text" class="w-56">
                 <p class="text-[#E72828] poppins text-[15px] mt-1 text-start">3–5 Agustus</p>
             </div>
         </div>
@@ -52,13 +52,13 @@
                     class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
                     placeholder="Nama">
 
-                <input type="text" id="phoneInput" name="customer_phone"
+                <input type="number" id="phoneInput" name="customer_phone"
                     class="inputform poppins w-[320px] h-[50px] border-1 rounded-full p-4 border-[#E72828]/50 focus:outline-[#E72828] focus:outline-2 transition-all duration-200"
                     placeholder="No. HP">
             </div>
 
             <div
-                class="w-[340px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
+                class="w-[320px] border-2 border-[#EB3D3D] rounded-4xl flex items-center justify-center flex-col mx-auto mt-12">
                 <h1 class="text-[25px] coolvetica text-[#164483] text-center m-4">Menu yang dipesan</h1>
                 <div class="flex flex-col w-full">
                     {{-- Loop menu menggunakan template Alpine.js --}}
@@ -69,7 +69,8 @@
                             <div class="flex-grow mx-4">
                                 <h3 class="font-bold text-[#164483]" x-text="product.name"></h3>
                                 <p class="text-sm text-[#E72828]"
-                                    x-text="new Intl.NumberFormat('id-ID').format(product.price) + 'K'"></p>
+                                    x-text="'Rp' + new Intl.NumberFormat('id-ID').format(product.price)">
+                                </p>
                             </div>
                             <div class="flex items-center gap-2" x-data="{ qty: product.quantity || 0 }" x-init="$watch('qty', val => product.quantity = val)">
                                 <!-- Hidden ID -->

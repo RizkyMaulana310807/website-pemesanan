@@ -1,8 +1,9 @@
     <!-- Navbar -->
-    <div class="bg-[#164483] text-white px-4">
+    <div class="bg-[#164483] text-white px-4 py-2">
         <div class="flex justify-between items-center">
-            <div class="text-white text-sm flex flex-row w-22 h-22 items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo">
+            <div class="text-white text-sm flex flex-row w-14 h-1w-14 items-center">
+                <img src="{{ asset('images/orcaeats.png') }}" alt="Logo">
+                <p style="letter-spacing: 1px;" class="font-semibold coolvetica">ORCA<br>Eats</p>
             </div>
             <div class="space-y-1 cursor-pointer">
                 {{-- <i class="fa-solid fa-bars fa-2xl"></i> --}}

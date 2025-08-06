@@ -1,8 +1,8 @@
 <x-template>
     <div class="w-full max-w-md mx-auto px-4">
-        <div class="w-[56px] my-8 flex justify-center items-center flex-col m-auto gap-8">
-            <img src="{{ asset('images/billtext.png') }}" alt="Bill Text">
-            <p class="w-[257px] text-center poppins text-[15px]">Makasih udah jajan di ORCA Eats! Jangan lupa simpan
+        <div class="w-[198px] my-8 flex justify-center items-center flex-col m-auto gap-8">
+            <img src="{{ asset('images/InvoiceText.png') }}" alt="Bill Text">
+            <p class="w-[257px] text-center poppins text-[15px] text-[#164483]">Makasih udah jajan di ORCA Eats! Jangan lupa simpan
                 bill ini ya, tunjukin pas ambil pesanan</p>
         </div>
 
@@ -10,7 +10,7 @@
             class="rounded-xl bg-[#FDF7F2] w-full border-[2.5px] border-[#164483] flex flex-col items-center p-4 text-[#164483]">
             {{-- Logo dan Judul --}}
             <div class="text-center mb-4">
-                <img src="{{ asset('images/Logo1.png') }}" alt="Logo" class="w-[74px] h-[74px] mx-auto">
+                <img src="{{ asset('images/orcaeats.png') }}" alt="Logo" class="w-[74px] h-[74px] mx-auto">
                 <p class="text-[15px] coolvetica font-semibold text-[#164483]">ORCA Eats</p>
                 <p class="coolvetica text-[#164483] w-[219px]">Kamu bisa mengambil pesanan kamu di hari {{ \Carbon\Carbon::parse($order->pickup_date)->locale('id')->isoFormat('dddd') }}</p>
             </div>

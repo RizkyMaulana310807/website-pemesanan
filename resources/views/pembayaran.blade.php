@@ -6,7 +6,7 @@
         <form action="{{ route('checkout.store') }}" method="POST">
             @csrf
             <div class="my-8 flex items-center justify-center">
-                <img src="{{ asset('images/pembayarantext.png') }}" alt="pembayaran" class="w-[219px]">
+                <img src="{{ asset('images/pembayaran.png') }}" alt="pembayaran" class="w-[219px]">
             </div>
 
             <div class="flex items-center justify-center flex-col gap-4 my-8">
