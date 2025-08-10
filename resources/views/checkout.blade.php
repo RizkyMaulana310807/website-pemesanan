@@ -43,7 +43,7 @@
                 <tr>
                     <td>Tanggal Pesan</td>
                     <td>:</td>
-                    <td>{{ $order->created_at->format('d-m-Y H:i') }}</td>
+                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
                 </tr>
                 <tr>
                     <td>Tanggal Ambil</td>
@@ -97,7 +97,7 @@
             </button>
 
             <a href="{{ route('home') }}"
-                class="w-full max-w-xs h-[50px] text-center coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white rounded-full">
+                class="w-full max-w-xs h-[50px] flex items-center justify-center text-center coolvetica text-[22px] border-2 border-[#164483] bg-[#164483] text-white rounded-full">
                 Selesai
             </a>
         </div>
