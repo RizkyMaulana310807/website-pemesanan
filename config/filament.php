@@ -14,6 +14,12 @@ return [
     |
     */
 
+
+    'pages' => [
+        App\Filament\Pages\Dashboard::class,
+    ],
+
+
     'broadcasting' => [
 
         // 'echo' => [

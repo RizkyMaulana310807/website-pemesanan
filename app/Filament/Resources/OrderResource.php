@@ -138,7 +138,6 @@ class OrderResource extends Resource
                 TextColumn::make('created_at')->dateTime()->label('Tgl Pesan'),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
 
@@ -152,21 +151,37 @@ class OrderResource extends Resource
                     })
                     ->requiresConfirmation()
                     ->color(fn(Order $record) => match ($record->status) {
-                        'pending' => 'success',
-                        'delivery' => 'primary',
+                        'delivery' => 'success',
+                        'delivered' => 'primary',
                         default => 'secondary',
                     })
                     ->icon(fn(Order $record) => match ($record->status) {
-                        'pending' => 'heroicon-o-truck',
-                        'delivery' => 'heroicon-o-check-circle',
-                        default => 'heroicon-o-ban',
+                        'delivery' => 'heroicon-o-truck',
+                        'delivered' => 'heroicon-o-check-circle',
+                        default => 'heroicon-o-x-circle',
                     })
                     ->label(fn(Order $record) => match ($record->status) {
-                        'pending' => 'Dalam Pengiriman',
-                        'delivery' => 'Sudah Diterima',
-                        default => 'Selesai',
+                        'delivery' => 'OTW',
+                        'delivered' => 'Received',
+                        default => 'Send',
                     })
                     ->visible(fn(Order $record): bool => in_array($record->status, ['pending', 'delivery'])),
+
+                Tables\Actions\Action::make('Ubah Pembayaran')
+                    ->requiresConfirmation()
+                    ->color(fn(Order $record) => $record->payment_status === 'pending' ? 'warning' : 'success')
+                    ->icon(fn(Order $record) => $record->payment_status === 'pending'
+                        ? 'heroicon-o-banknotes'
+                        : 'heroicon-o-check-circle')
+                    ->label(fn(Order $record) => $record->payment_status === 'pending'
+                        ? 'Tandai Sudah Dibayar'
+                        : 'Tandai Belum Dibayar')
+                    ->action(function (Order $record) {
+                        $record->update([
+                            'payment_status' => $record->payment_status === 'pending' ? 'paid' : 'pending',
+                        ]);
+                    })
+
             ])
             ->bulkActions([
                 //
@@ -177,14 +192,27 @@ class OrderResource extends Resource
     {
         return [
             'semua' => Tab::make()->label('Semua'),
+
+            // Tab status pesanan
             'pending' => Tab::make()
                 ->label('Pending')
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'pending')),
+
             'delivery' => Tab::make()
                 ->label('Dalam Pengiriman')
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'delivery')),
+
+            'delivered' => Tab::make()
+                ->label('Sudah Diterima')
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'delivered')),
+
+            // Tab status pembayaran
+            'payment_pending' => Tab::make()
+                ->label('Pembayaran Pending')
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('payment_status', 'pending')),
+
             'paid' => Tab::make()
-                ->label('Paid')
+                ->label('Sudah Dibayar')
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('payment_status', 'paid')),
         ];
     }
