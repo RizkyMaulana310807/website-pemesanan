@@ -1,8 +1,9 @@
 <x-template>
     <div class="container mx-auto p-4 space-y-8" id="invoiceContainer">
 
-        @foreach($orders as $order)
-            <div class="rounded-xl bg-[#FDF7F2] w-full border-[2.5px] border-[#164483] flex flex-col items-center p-4 text-[#164483] invoiceCard" data-invoice-id="{{ $order->invoice_id }}" style="display:none;">
+        @foreach ($orders as $order)
+            <div class="rounded-xl bg-[#FDF7F2] border-[2.5px] border-[#164483] flex flex-col items-center p-4 text-[#164483] w-[320px] max-w-full mx-auto invoiceCard"
+                data-invoice-id="{{ $order->invoice_id }}" style="display:none;">
                 {{-- Konten invoice sama seperti sebelumnya --}}
                 <div class="text-center mb-4">
                     <img src="{{ asset('images/orcaeats.png') }}" alt="Logo" class="w-[74px] h-[74px] mx-auto">
@@ -39,7 +40,8 @@
                     <tr>
                         <td>Tanggal Ambil</td>
                         <td>:</td>
-                        <td>{{ \Carbon\Carbon::parse($order->pickup_date)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($order->pickup_date)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+                        </td>
                     </tr>
                     <tr>
                         <td>Pembayaran</td>
@@ -77,8 +79,7 @@
                     </h1>
                 </div>
 
-                <button
-                    onclick="downloadInvoiceImage('{{ $order->invoice_id }}')"
+                <button onclick="downloadInvoiceImage('{{ $order->invoice_id }}')"
                     class="mt-4 px-4 py-2 bg-[#164483] text-white rounded hover:bg-[#0f306c]">
                     Download Invoice
                 </button>
@@ -106,7 +107,9 @@
 
             saveInvoiceToLocalStorage(invoiceId);
 
-            const canvas = await html2canvas(invoiceElement, { scale: 2 });
+            const canvas = await html2canvas(invoiceElement, {
+                scale: 2
+            });
             const imgData = canvas.toDataURL('image/png');
 
             const link = document.createElement('a');
@@ -122,7 +125,7 @@
             // Tampilkan hanya invoice yang ada di localStorage
             document.querySelectorAll('.invoiceCard').forEach(card => {
                 let id = card.getAttribute('data-invoice-id');
-                if(storedInvoices.includes(id)) {
+                if (storedInvoices.includes(id)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';

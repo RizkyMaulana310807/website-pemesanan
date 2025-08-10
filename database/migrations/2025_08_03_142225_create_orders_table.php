@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('grand_total')->comment('Total harga pesanan');
             $table->enum('payment_method', ['cash', 'qris']);
             $table->enum('payment_status', ['pending', 'paid'])->default('pending');
+            $table->enum('status', ['pending', 'delivery', 'delivered'])->default('pending');
             $table->timestamps();
         });
     }

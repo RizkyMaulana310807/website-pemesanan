@@ -108,7 +108,7 @@ class OrderController extends Controller
                 'pickup_date' => now()->addDays(3)->toDateString(), // Contoh: Ambil 3 hari dari sekarang
                 'grand_total' => $orderDetails['grand_total'],
                 'payment_method' => $request->payment_method,
-                'payment_status' => 'paid', // Asumsi langsung lunas
+                'payment_status' => 'pending', // Asumsi langsung lunas
             ]);
 
             // Simpan detail produk ke tabel pivot 'order_product'
