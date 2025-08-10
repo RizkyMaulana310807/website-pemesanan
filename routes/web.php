@@ -20,7 +20,7 @@ Route::get('/clear-optimize', function () {
 // Rute untuk menampilkan halaman
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/preorder', [PageController::class, 'preorder'])->name('preorder'); //
-
+Route::get('/invoices', [PageController::class, 'invoices'])->name('invoices.check');
 // Rute untuk alur pemesanan
 Route::post('/preorder/process', [OrderController::class, 'processPreorder'])->name('preorder.process');
 Route::get('/pembayaran', [OrderController::class, 'showPayment'])->name('payment.show'); //

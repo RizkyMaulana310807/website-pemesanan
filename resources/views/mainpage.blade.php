@@ -13,9 +13,9 @@
             balik lagi ga pake ribet! </p>
         <!-- Buttons -->
         <div class="flex justify-center gap-4 mt-6 mb-8">
-            <a href="#menu1"
+            <a href="{{ route('invoices.check') }}"
                 class="bg-[#E72828] border-2 border-transparent active:border-[#E72828] active:bg-transparent active:text-[#E72828] text-white px-5 py-2 rounded-full font-semibold poppins">Liat
-                Menu</a>
+                Invoices</a>
             {{-- Perbaikan: Menggunakan helper route() agar URL preorder mengarah ke /orca/preorder --}}
             <a href="{{ route('preorder') }}"
                 class="bg-[#164483] border-2 border-transparent active:border-[#164483] active:bg-transparent active:text-[#164483] text-white px-5 py-2 rounded-full font-semibold poppins">Pre

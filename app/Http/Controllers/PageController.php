@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\WaktuPo;
+use App\Models\Order;
 
 class PageController extends Controller
 {
@@ -52,5 +53,12 @@ class PageController extends Controller
             ->get();
 
         return view('popage', compact('availableProducts'));
+    }
+
+    public function invoices()
+    {
+        $orders = Order::with('products')->get();
+
+        return view('invoices', compact('orders'));
     }
 }
