@@ -25,7 +25,7 @@ Route::get('/preorder', [PageController::class, 'preorder'])->name('preorder'); 
 Route::post('/preorder/process', [OrderController::class, 'processPreorder'])->name('preorder.process');
 Route::get('/pembayaran', [OrderController::class, 'showPayment'])->name('payment.show'); //
 Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store'); //
-Route::get('/checkout/{order}', [OrderController::class, 'showCheckout'])->name('checkout.show'); //
+Route::get('/checkout/{order:invoice_id}', [OrderController::class, 'showCheckout'])->name('checkout.show'); //
 Route::get('/debug-images', function () {
     $products = \App\Models\Product::all();
     return view('debug-images', ['products' => $products]);

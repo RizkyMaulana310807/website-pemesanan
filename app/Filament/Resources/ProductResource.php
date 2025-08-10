@@ -11,7 +11,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
@@ -32,23 +31,28 @@ class ProductResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->label('Nama Produk'),
+
                 Textarea::make('description')
                     ->required()
                     ->label('Deskripsi'),
+
                 TextInput::make('price')
                     ->required()
                     ->numeric()
                     ->prefix('Rp')
                     ->label('Harga'),
-                FileUpload::make('image')
-                    ->image()
-                    // Menggunakan disk public yang terhubung ke storage/app/public
-                    ->disk('public')
-                    ->directory('images')
+
+                TextInput::make('img_path')
                     ->required()
-                    ->label('Gambar Produk'),
+                    ->maxLength(255)
+                    ->label('Path Gambar (contoh: images/applefritters.png)'),
+
                 DateTimePicker::make('unlocked_at')
                     ->label('Tersedia Mulai Tanggal'),
+
+                DateTimePicker::make('locked_at')
+                    ->label('Tersedia Sampai Tanggal'),
+
                 Toggle::make('is_special')
                     ->required()
                     ->label('Menu Spesial?'),
@@ -59,20 +63,32 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
+                ImageColumn::make('img_path')
                     ->label('Gambar')
-                    // PERUBAHAN: Secara eksplisit menggunakan disk 'public'
-                    // Ini adalah cara yang paling direkomendasikan dan andal
-                    ->disk('public'),
-                TextColumn::make('name')->searchable()->sortable()->label('Nama Produk'),
+                    ->getStateUsing(fn($record) => asset($record->img_path))
+                    ->height(60)
+                    ->width(60),
+
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Nama Produk'),
+
                 TextColumn::make('price')
                     ->money('IDR')
                     ->sortable()
                     ->label('Harga'),
+
                 TextColumn::make('unlocked_at')
                     ->dateTime()
                     ->sortable()
                     ->label('Tersedia Mulai'),
+
+                TextColumn::make('locked_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->label('Tersedia Sampai'),
+
                 IconColumn::make('is_special')
                     ->boolean()
                     ->label('Spesial'),
@@ -82,6 +98,7 @@ class ProductResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -92,9 +109,7 @@ class ProductResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

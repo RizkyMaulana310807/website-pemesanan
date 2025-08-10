@@ -19,8 +19,9 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'image',
+        'img_path',
         'unlocked_at',
+        'locked_at',
         'is_special',
     ];
 

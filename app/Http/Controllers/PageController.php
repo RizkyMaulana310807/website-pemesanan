@@ -38,13 +38,17 @@ class PageController extends Controller
     {
         $waktuPo = WaktuPo::latest()->first();
 
-        // if (!$waktuPo || Carbon::today()->lt($waktuPo->open_po) || Carbon::today()->gt($waktuPo->close_po)) {
-        //     return redirect('/sorry');
-        // }
+        if (!$waktuPo || Carbon::today()->lt($waktuPo->open_po) || Carbon::today()->gt($waktuPo->close_po)) {
+            return redirect('/sorry');
+        }
+        $today = Carbon::today();
 
         // Hanya ambil produk yang 'unlocked_at'-nya sudah lewat atau null
-        $availableProducts = Product::where('unlocked_at', '<=', Carbon::now())
-            ->orWhereNull('unlocked_at')
+        $availableProducts = Product::whereDate('unlocked_at', $today)
+            ->where(function ($query) use ($today) {
+                $query->whereNull('locked_at')
+                    ->orWhereDate('locked_at', '>', $today);
+            })
             ->get();
 
         return view('popage', compact('availableProducts'));

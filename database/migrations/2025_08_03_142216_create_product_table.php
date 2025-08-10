@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name'); // e.g., "Apple Fritters"
             $table->text('description'); // e.g., "Garing di luar, lembut di dalam..."
             $table->integer('price')->comment('Harga dalam Rupiah untuk menghindari koma'); // e.g., 7000
-            $table->string('image'); // e.g., "images/applefritter.png"
-            $table->timestamp('unlocked_at')->nullable()->comment('Waktu menu tersedia (untuk menu mingguan)'); // e.g., 10 Agustus 2025
+            $table->string('img_path'); // e.g., "images/applefritter.png"
+            $table->timestamp('unlocked_at')->nullable()->comment('Waktu menu tersedia'); // e.g., 10 Agustus 2025
+            $table->timestamp('locked_at')->nullable()->comment('Waktu menu tutup po'); // e.g., 11 Agustus 2025
             $table->boolean('is_special')->default(false)->comment('Penanda menu spesial seperti HUT RI'); //
             $table->timestamps();
         });

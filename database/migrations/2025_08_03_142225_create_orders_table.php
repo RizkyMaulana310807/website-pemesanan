@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name'); // Diambil dari input nama
-            $table->string('customer_phone'); // Diambil dari input No. HP
-            $table->date('pickup_date'); // Tanggal pengambilan pesanan
-            // $table->string('pickup_time_slot'); // Slot waktu pengambilan, e.g., "10.00 - 11.00"
-            $table->integer('grand_total')->comment('Total harga pesanan'); // e.g., 17000
-            $table->enum('payment_method', ['cash', 'qris']); // Metode pembayaran
+            $table->string('customer_name');
+            $table->string('customer_phone');
+            $table->string('invoice_id');
+            $table->date('pickup_date');
+            $table->integer('grand_total')->comment('Total harga pesanan');
+            $table->enum('payment_method', ['cash', 'qris']);
             $table->enum('payment_status', ['pending', 'paid'])->default('pending');
-            $table->timestamps(); // `created_at` akan berfungsi sebagai tanggal pesan
+            $table->timestamps();
         });
     }
 

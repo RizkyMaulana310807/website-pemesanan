@@ -7,6 +7,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -54,13 +56,18 @@ class OrderController extends Controller
             }
         }
 
+        $prefix = 'ORCA';
+        $date = Carbon::now()->format('Ymd');
+        $random = strtoupper(Str::random(4)); // 4 karakter acak
+        $invoiceId = "{$prefix}-{$date}-{$random}";
+
         // Simpan data yang sudah valid di session
         Session::put('order_details', [
-            'customer_name' => $request->customer_name,
+            'customer_name'  => $request->customer_name,
             'customer_phone' => $request->customer_phone,
-            // 'pickup_time_slot' => $request->pickup_time_slot,
-            'products' => $orderProductsData,
-            'grand_total' => $grandTotal
+            'invoice_id'     => $invoiceId, // ⬅ ditambahkan di sini
+            'products'       => $orderProductsData,
+            'grand_total'    => $grandTotal
         ]);
 
         return redirect()->route('payment.show');
@@ -97,6 +104,7 @@ class OrderController extends Controller
             $order = Order::create([
                 'customer_name' => $orderDetails['customer_name'],
                 'customer_phone' => $orderDetails['customer_phone'],
+                'invoice_id' => $orderDetails['invoice_id'],
                 'pickup_date' => now()->addDays(3)->toDateString(), // Contoh: Ambil 3 hari dari sekarang
                 'grand_total' => $orderDetails['grand_total'],
                 'payment_method' => $request->payment_method,
@@ -117,7 +125,7 @@ class OrderController extends Controller
         // Hapus session setelah order berhasil dibuat
         Session::forget('order_details');
 
-        return redirect()->route('checkout.show', $order);
+        return redirect()->route('checkout.show', $order->invoice_id);
     }
 
     /**

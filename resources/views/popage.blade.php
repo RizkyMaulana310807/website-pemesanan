@@ -6,7 +6,7 @@
         {{-- pickup_time_slot: '{{ old('pickup_time_slot') }}', --}}
         products: {{ json_encode(
             $availableProducts->map(function ($p) {
-                return ['id' => $p->id, 'name' => $p->name, 'price' => $p->price, 'image' => $p->image, 'quantity' => 0];
+                return ['id' => $p->id, 'name' => $p->name, 'price' => $p->price, 'img_path' => $p->img_path, 'quantity' => 0];
             }),
         ) }},
     
@@ -64,7 +64,7 @@
                     {{-- Loop menu menggunakan template Alpine.js --}}
                     <template x-for="(product, index) in products" :key="product.id">
                         <div class="flex justify-between items-center p-4">
-                            <img :src="'{{ asset('') }}' + product.image" :alt="product.name"
+                            <img :src="'{{ asset('') }}' + product.img_path" :alt="product.name"
                                 class="w-20 h-20 rounded-md object-cover">
                             <div class="flex-grow mx-4">
                                 <h3 class="font-bold text-[#164483]" x-text="product.name"></h3>

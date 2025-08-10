@@ -21,6 +21,11 @@
             {{-- Info Pemesan (Dinamis) --}}
             <table class="text-[13px] font-medium poppins w-full leading-6 mb-2">
                 <tr>
+                    <td class="w-1/3">No. Invoice</td>
+                    <td class="w-[10px]">:</td>
+                    <td>{{ $order->invoice_id }}</td>
+                </tr>
+                <tr>
                     <td class="w-1/3">Nama</td>
                     <td class="w-[10px]">:</td>
                     <td>{{ $order->customer_name }}</td>

@@ -84,7 +84,7 @@
     </div>
 
 
-    <div class="flex flex-row">
+    <div class="flex flex-row mx-10">
         <div class="flex items-center gap-6">
             <img src="{{ asset('images/brownisbite.png') }}" alt="Brownies Bites"
                 class="w-36 h-36 object-contain text-shadow-2xl">
@@ -100,7 +100,7 @@
         </div>
     </div>
 
-    <div class="flex flex-row justify-around mt-8">
+    <div class="flex flex-row justify-around mt-16 mx-10">
         <div class="">
             <h1 class="text-right text-[#164483] font-bold text-2xl coolvetica" style="letter-spacing: 1px;">
                 Japanesse<br>Coffee Jelly</h1>
@@ -109,7 +109,7 @@
                 krim<br>manis yang creamy</p>
         </div>
         <div class="w-36 h-36 flex items-end">
-            <img src="{{ asset('images/kopijely.png') }}" class="flex w-36 h-36" alt="Japanesse coffe jelly">
+            <img src="{{ asset('images/kopijely.png') }}" class="flex w-36" alt="Japanesse coffe jelly">
         </div>
     </div>
 
@@ -284,8 +284,7 @@
 
             <!-- Ice Cream -->
             <div class="flex items-center gap-6">
-                <img src="{{ asset('images/eskrim.png') }}" alt="Ice Cream Scoops"
-                    class="w-36 h-36 object-contain">
+                <img src="{{ asset('images/eskrim.png') }}" alt="Ice Cream Scoops" class="w-36 h-36 object-contain">
                 <div class="text-left">
                     <h1 class="text-[#164483] font-bold text-2xl leading-tight coolvetica">Ice Cream<br>Scoops</h1>
                     <p class="text-[#E72828] font-bold text-lg mt-1 coolvetica text-[24px]">7K</p>
